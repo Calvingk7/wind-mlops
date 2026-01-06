@@ -1,0 +1,23 @@
+$schema: https://azuremlschemas.azureedge.net/latest/commandJob.schema.json
+
+display_name: ge-clean-validation
+experiment_name: wind-mlops
+
+code: ..
+
+command: >
+  python validation/validation.py ${{inputs.clean_data}}
+
+inputs:
+  clean_data:
+    type: uri_folder
+    path: azureml:windt_:1
+
+environment: azureml:ge-env-modern:1
+compute: azureml:windt-dev
+
+environment_variables:
+  AZURE_STORAGE_CONNECTION_STRING: DefaultEndpointsProtocol=https;AccountName=windtml0869981277;***REMOVED***;EndpointSuffix=core.windows.net
+
+
+  AZURE_STORAGE_ACCOUNT_NAME: windtml0869981277
